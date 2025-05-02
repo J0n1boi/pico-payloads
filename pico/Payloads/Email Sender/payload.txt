@@ -5,7 +5,7 @@ STRING https://mail.google.com/mail/?view=cm&fs=1&to=$$TO_EMAIL$$
 ENTER
 DELAY 5000
 STRING $$SUBJECT$$
-DELAY 300
+DELAY 200
 TAB
 DELAY 200
 STRING $$BODY$$
