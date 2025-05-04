@@ -171,16 +171,16 @@ def payload_selection(payloads_folder, pico_path):
 
     # Ensure path is not a root; fallback to a subfolder if needed
     if os.path.abspath(pico_path) == os.path.abspath(os.path.splitdrive(pico_path)[0] + os.sep):
-        pico_path = os.path.join(pico_path, "payloads")
-        os.makedirs(pico_path, exist_ok=True)
-    
+        pico_path_withpayloads = os.path.join(pico_path, "payloads")
+        os.makedirs(pico_path_withpayloads, exist_ok=True)
+
     payload_dd_path = os.path.join(pico_path, "payload.dd")
-    
+
     # Create blank file if it doesn't exist
     if not os.path.exists(payload_dd_path):
         with open(payload_dd_path, "w", encoding="utf-8") as f:
             pass  # Blank file
-        
+
     # Write payload content
     with open(payload_dd_path, "w", encoding="utf-8") as f:
         f.write(payload_content)
