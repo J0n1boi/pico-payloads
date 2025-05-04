@@ -7,4 +7,4 @@ Everything in this repo is kinda weird with the way it's build, I'm new to this 
 Theres also a local download over there in the releases, it's local so it's not really reccomended, but it's the closest to open-source this thing'll every get.
 
 Thanks,
-    -J0n1boi
+    J0n1boi
