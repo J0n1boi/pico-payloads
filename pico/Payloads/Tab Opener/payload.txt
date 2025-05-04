@@ -1,3 +1,5 @@
+REM Tab Opener
+
 WINDOWS r
 DELAY 500
 STRING powershell

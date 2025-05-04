@@ -169,12 +169,25 @@ def payload_selection(payloads_folder, pico_path):
                     print(f"\n⚡ Special Message: {special_message}")
                     input("Press Enter to continue...")
 
-    # Save final payload as payload.dd
+    # Ensure path is not a root; fallback to a subfolder if needed
+    if os.path.abspath(pico_path) == os.path.abspath(os.path.splitdrive(pico_path)[0] + os.sep):
+        pico_path = os.path.join(pico_path, "payloads")
+        os.makedirs(pico_path, exist_ok=True)
+    
     payload_dd_path = os.path.join(pico_path, "payload.dd")
+    
+    # Create blank file if it doesn't exist
+    if not os.path.exists(payload_dd_path):
+        with open(payload_dd_path, "w", encoding="utf-8") as f:
+            pass  # Blank file
+        
+    # Write payload content
     with open(payload_dd_path, "w", encoding="utf-8") as f:
         f.write(payload_content)
 
-    print("✅ Payload written as payload.dd")
+
+
+        print("✅ Payload written as payload.dd")
 
 
 def is_device_finalized(drive_name, drive_path):

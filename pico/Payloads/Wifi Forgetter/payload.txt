@@ -1,3 +1,5 @@
+REM Wifi Forgetter
+
 DELAY 500
 WINDOWS r
 DELAY 300

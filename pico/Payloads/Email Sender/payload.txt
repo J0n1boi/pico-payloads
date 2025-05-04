@@ -1,3 +1,5 @@
+REM Email Sender
+
 DELAY 1000
 WINDOWS r
 DELAY 200

@@ -1,3 +1,5 @@
+REM Wifi password emailer
+
 REM Title: Minimal Wi-Fi Password Extractor and Emailer
 REM Author: Zero_Sploit (Modified by ChatGPT)
 REM Target: Windows 10+ (PowerShell-based, no temp batch files)
