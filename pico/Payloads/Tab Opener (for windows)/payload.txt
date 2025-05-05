@@ -9,7 +9,6 @@ STRING $a = Get-PSDrive | Where-Object { $_.Provider -like 'Microsoft.PowerShell
 ENTER
 STRING Add-Type -AssemblyName System.Windows.Forms
 ENTER
-DELAY 500
 STRING Start-Sleep -Seconds 5; while (1) { [System.Windows.Forms.SendKeys]::SendWait('^t'); Start-Sleep -Milliseconds 50; $b = Get-PSDrive | Where-Object { $_.Provider -like 'Microsoft.PowerShell.Core\FileSystem' -and $_.Name -match '^[A-Z]$' }; if ($b.Count -lt $a.Count) { exit } }
 ENTER
 DELAY 500
